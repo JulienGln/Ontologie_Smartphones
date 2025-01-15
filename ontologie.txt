@@ -1,6 +1,6 @@
 Modèles : 
-Samsung Galaxy S23
-Google Pixel 8 Pro
+Samsung Galaxy S23 : 120Hz, AMOLED, 4K, 3 capteurs, 8Go RAM, 128Go
+Google Pixel 8 Pro : 120Hz, OLED, 4K?, 3 capteurs, 12Go RAM, 128Go, recharge rapide
 OnePlus 11
 iPhone 14
 iPhone 15
@@ -10,7 +10,7 @@ Samsung Galaxy Z Flip 5
 Samsung Galaxy Z Fold 5
 
 Mots-clés :
-iOS, Android, compact, pliable, batterie, écran, photo, chargement rapide
+iOS, Android, compact, pliable, batterie, écran, photo, chargement rapide, stockage, ram, fréquence
 
 Opposition :
 
@@ -21,6 +21,8 @@ Android
 Smartphones
     _Système d'exploitation_
         iOS
+            Ecran
+                oled
         android
             _Maléabilité_
                 pliable
@@ -30,7 +32,17 @@ Smartphones
                         largeur
                             Samsung Galaxy Z Fold 5
                 compact
-                    _Autonomie_
+                    Rafraichissement
+                        120Hz
+                            Camera
+                                triple
+                                    Ecran
+                                        oled
+                                            Google Pixel 8 Pro
+                                        amoled
+                                            Samsung Galaxy S23       
+                                double
+                        60Hz
 
 
 
