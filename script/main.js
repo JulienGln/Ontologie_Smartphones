@@ -36,10 +36,8 @@ window.addEventListener("load", async function () {
 
   // créer un réseau
   container = document.getElementById("mynetwork");
-  data = {
-    nodes: nodes,
-    edges: edges,
-  };
+  data = toVisDataset();
+  console.log(data);
 
   // options pour les noeuds : https://visjs.github.io/vis-network/docs/network/nodes.html
   // options pour les arêtes : https://visjs.github.io/vis-network/docs/network/edges.html
@@ -48,6 +46,16 @@ window.addEventListener("load", async function () {
     autoResize: true,
     height: "100%",
     width: "100%",
+    layout: {
+      improvedLayout: false,
+      hierarchical: {
+        direction: "UD", // 'UD' pour haut en bas, 'DU' pour bas en haut
+        sortMethod: "directed", // 'directed' pour organiser en fonction de la direction des arêtes
+      },
+    },
+    physics: {
+      enabled: false, // Désactiver la physique pour un agencement plus stable
+    },
     // options tous les noeuds
     nodes: {
       shape: "circle",
