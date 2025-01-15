@@ -46,9 +46,11 @@ const raw = `	production
 		web
 		client lourd`;
 
+var concepts_id = 0;
 //--------------------------------------------------------------CONCEPT CLASS
 class Concept {
   constructor(name, superConcept, subConcepts, level) {
+    this.id = concepts_id++;
     this.name = name;
     this.level = level;
     this.superConcept = superConcept;
@@ -140,3 +142,41 @@ Object.keys(matrix).forEach((file) => {
 const after = Date.now();
 console.log(after - before);
 console.log(docs.length);
+
+function toVisDatasetNodeElement(concept) {
+  return {
+    id: concept.id,
+    label: concept.name,
+    shape: "circularImage",
+    type: "CONCEPT",
+    title: concept.name,
+    // group: concept.group,
+  };
+}
+
+function toVisDatasetEdgeElement(parent, child) {
+  return {
+    from: parent.id,
+    to: child.id,
+    arrows: "to",
+  };
+}
+
+function toVisDataset() {
+  nodes = [];
+  edges = [];
+  concepts.forEach((concept) => {
+    nodes.push(toVisDatasetNodeElement(concept));
+  });
+
+  concepts.forEach((concept) => {
+    concept.subConcepts.forEach((subConcept) => {
+      edges.push(toVisDatasetEdgeElement(concept, subConcept));
+    });
+  });
+
+  return {
+    nodes: nodes,
+    edges: edges,
+  };
+}
