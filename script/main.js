@@ -13,6 +13,10 @@ var nbComposantesConnexes;
 /** PROGRAMME PRINCIPAL **/
 /************************/
 
+var displayAll = false;
+const DISPLAY_ALL_NODE_SPACING = 400;
+const DISPLAY_DEFAULT_NODE_SPACING = 100;
+
 // ce qui doit être fait une fois la page chargée
 window.addEventListener("load", async function () {
   // masque l'écran de chargement
@@ -20,7 +24,7 @@ window.addEventListener("load", async function () {
 
   // créer un réseau
   container = document.getElementById("mynetwork");
-  data = toVisDataset();
+  data = toVisDataset(displayAll);
   console.log(data);
 
   // options pour les noeuds : https://visjs.github.io/vis-network/docs/network/nodes.html
@@ -37,7 +41,7 @@ window.addEventListener("load", async function () {
         direction: "UD", // 'UD' pour haut en bas, 'DU' pour bas en haut
         sortMethod: "directed", // 'directed' pour organiser en fonction de la direction des arêtes
         levelSeparation: 1000,
-        // nodeSpacing: 300,
+        nodeSpacing: DISPLAY_ALL_NODE_SPACING,
       },
     },
     physics: {
@@ -67,6 +71,24 @@ window.addEventListener("load", async function () {
       },
     },
   };
+
+  document
+    .getElementById("btnDisplayFullTree")
+    .addEventListener("click", () => {
+      displayAll = !displayAll;
+      let btn = document.getElementById("btnDisplayFullTree");
+
+      if (displayAll) {
+        options.layout.hierarchical.nodeSpacing = DISPLAY_DEFAULT_NODE_SPACING;
+        btn.textContent = "Réduire l'arbre";
+      } else {
+        options.layout.hierarchical.nodeSpacing = DISPLAY_ALL_NODE_SPACING;
+        btn.textContent = "Afficher l'arbre complet";
+      }
+
+      data = toVisDataset(displayAll);
+      network = new vis.Network(container, data, options);
+    });
 
   // affichage de la page
   document.getElementById("main-page").style.display = "";

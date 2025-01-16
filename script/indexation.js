@@ -184,7 +184,7 @@ function toVisDatasetNodeElement(concept) {
   };
 }
 
-function toVisDatasetEdgeElement(parent, child,  hidden = ) {
+function toVisDatasetEdgeElement(parent, child, hidden) {
   return {
     from: parent.id,
     to: child.id,
@@ -202,11 +202,10 @@ function toVisDataset(displayAll) {
     }
   });
 
-
-
   // génération des noeuds
   concepts.forEach((concept) => {
-    if (concept.display || displayAll) nodes.push(toVisDatasetNodeElement(concept));
+    if (concept.display || displayAll)
+      nodes.push(toVisDatasetNodeElement(concept));
   });
 
   // génération des arêtes
