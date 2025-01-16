@@ -156,9 +156,9 @@ const colors = [
   "#FF3380", // Rose pâle
   "#8033A1", // Pourpre
   "#A1FF80", // Vert pastel
+  "#A1A1FF", // Bleu clair
   "#8033FF", // Violet clair
   "#FF8033", // Orange clair
-  "#A1A1FF", // Bleu clair
 ];
 
 function toVisDatasetNodeElement(concept) {
@@ -172,6 +172,7 @@ function toVisDatasetNodeElement(concept) {
   return {
     id: concept.id,
     label: concept.name,
+    level: concept.level,
     // shape: "circularImage",
     type: "CONCEPT",
     title: concept.name,

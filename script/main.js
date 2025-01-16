@@ -25,6 +25,7 @@ window.addEventListener("load", async function () {
 
   // options pour les noeuds : https://visjs.github.io/vis-network/docs/network/nodes.html
   // options pour les arêtes : https://visjs.github.io/vis-network/docs/network/edges.html
+  // options pour le layout : https://visjs.github.io/vis-network/docs/network/layout.html
   // options par défaut (noeuds, arêtes ...)
   options = {
     autoResize: true,
@@ -35,6 +36,7 @@ window.addEventListener("load", async function () {
       hierarchical: {
         direction: "UD", // 'UD' pour haut en bas, 'DU' pour bas en haut
         sortMethod: "directed", // 'directed' pour organiser en fonction de la direction des arêtes
+        levelSeparation: 1000,
       },
     },
     physics: {
@@ -56,7 +58,8 @@ window.addEventListener("load", async function () {
     // options toutes les arêtes
     edges: {
       labelHighlightBold: true,
-      length: 200,
+      // length: 200,
+      smooth: true,
       dashes: true,
       scaling: {
         label: true,
