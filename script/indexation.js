@@ -1,52 +1,3 @@
-// Version corrigée
-
-// const fs = require("fs");
-//------------------------------------------------------------MODELISATION
-// Pseudo ontologie : c'est plutôt un recueil de concepts vaguement rangés
-const raw = `
-ontology
-  production
-    orm
-    logiciel
-    programme
-    source
-    framework
-    langage
-      java
-      c++
-      javascript
-      php
-      c#
-      python
-      cobol
-  modélisation
-    use-case
-    agilité
-    architecture
-  environnement
-    compilation
-    ide
-    bug
-    debugger
-    test
-    os
-    système d'exploitation
-  paradigme
-    fonctionnel
-    déclaratif
-    impératif
-      séquence
-      instruction
-    objet
-      classe
-      instance
-      interface
-  interface
-    embarqué
-    mobile
-    web
-    client lourd`;
-
 const FINAL_LEVEL = 13;
 var concepts_id = 0;
 //--------------------------------------------------------------CONCEPT CLASS
@@ -142,9 +93,7 @@ function parseTxtTree(rawTree) {
 
 function dropShallowBranches(tree, minDepth) {}
 
-//-----------------------------------------------INDEXATION (UN PEU) SEMANTIQUE
 const concepts = parseTxtTree(arbre).asList();
-console.log(concepts);
 
 const colors = [
   "#FF5733", // Rouge orangé
@@ -165,22 +114,13 @@ const colors = [
 ];
 
 function toVisDatasetNodeElement(concept) {
-  //   console.log(
-  //     concept +
-  //       " : " +
-  //       Object.keys(concept.subConcepts).map((sub) => {
-  //         sub.name;
-  //       })
-  //   );
   return {
     id: concept.id,
     label: concept.name,
     level: concept.level,
-    // shape: "circularImage",
     type: "CONCEPT",
     title: concept.name,
     color: colors[concept.level],
-    // group: concept.group,
   };
 }
 

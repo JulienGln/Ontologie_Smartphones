@@ -4,7 +4,6 @@
 
 // variable globales
 var edges, nodes, container, data, options, network;
-// similaire à des classes Noeud et Lien
 // classe Node : https://github.com/visjs/vis-network/blob/master/lib/network/modules/components/Node.js
 // classe Edge : https://github.com/visjs/vis-network/blob/master/lib/network/modules/components/Edge.js
 var nbComposantesConnexes;
@@ -14,7 +13,7 @@ var nbComposantesConnexes;
 /************************/
 
 var displayAll = false;
-const DISPLAY_ALL_NODE_SPACING = 400;
+const DISPLAY_ALL_NODE_SPACING = 500;
 const DISPLAY_DEFAULT_NODE_SPACING = 100;
 
 // ce qui doit être fait une fois la page chargée
@@ -25,7 +24,6 @@ window.addEventListener("load", async function () {
   // créer un réseau
   container = document.getElementById("mynetwork");
   data = toVisDataset(displayAll);
-  console.log(data);
 
   // options pour les noeuds : https://visjs.github.io/vis-network/docs/network/nodes.html
   // options pour les arêtes : https://visjs.github.io/vis-network/docs/network/edges.html
@@ -51,7 +49,7 @@ window.addEventListener("load", async function () {
     nodes: {
       shape: "circle",
       font: {
-        size: 18,
+        size: 28,
         //background: "lightgrey",
         color: "black",
       },
