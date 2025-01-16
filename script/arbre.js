@@ -2,7 +2,7 @@ const arbre = `
 Smartphones
 	_Système d'exploitation_
 		iOS
-			Camera 
+			Camera
 				triple
 					Ecran
 						oled
@@ -406,7 +406,7 @@ Smartphones
 												pliable
 												compact
 		android
-			Camera 
+			Camera
 				triple
 					Ecran
 						oled
@@ -810,7 +810,7 @@ Smartphones
 												pliable
 												compact
 		windows phone
-			Camera 
+			Camera
 				triple
 					Ecran
 						oled
