@@ -184,7 +184,7 @@ function toVisDatasetNodeElement(concept) {
   };
 }
 
-function toVisDatasetEdgeElement(parent, child, hidden) {
+function toVisDatasetEdgeElement(parent, child) {
   return {
     from: parent.id,
     to: child.id,
