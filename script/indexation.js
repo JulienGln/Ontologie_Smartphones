@@ -184,7 +184,7 @@ function toVisDatasetNodeElement(concept) {
   };
 }
 
-function toVisDatasetEdgeElement(parent, child) {
+function toVisDatasetEdgeElement(parent, child,  hidden = ) {
   return {
     from: parent.id,
     to: child.id,
@@ -192,7 +192,7 @@ function toVisDatasetEdgeElement(parent, child) {
   };
 }
 
-function toVisDataset() {
+function toVisDataset(displayAll) {
   nodes = [];
   edges = [];
 
@@ -202,15 +202,17 @@ function toVisDataset() {
     }
   });
 
+
+
   // génération des noeuds
   concepts.forEach((concept) => {
-    if (concept.display) nodes.push(toVisDatasetNodeElement(concept));
+    if (concept.display || displayAll) nodes.push(toVisDatasetNodeElement(concept));
   });
 
   // génération des arêtes
   concepts.forEach((concept) => {
     concept.subConcepts.forEach((subConcept) => {
-      if (subConcept.display)
+      if (subConcept.display || displayAll)
         edges.push(toVisDatasetEdgeElement(concept, subConcept));
     });
   });
