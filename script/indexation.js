@@ -47,6 +47,7 @@ ontology
     web
     client lourd`;
 
+const FINAL_LEVEL = 13;
 var concepts_id = 0;
 //--------------------------------------------------------------CONCEPT CLASS
 class Concept {
@@ -56,6 +57,7 @@ class Concept {
     this.level = level;
     this.superConcept = superConcept;
     this.subConcepts = subConcepts;
+    this.display = false;
   }
   toString() {
     let s = "";
@@ -79,6 +81,11 @@ class Concept {
   addSubConcept(subConcept) {
     this.subConcepts.push(subConcept);
     subConcept.superConcept = this;
+  }
+
+  makeDisplayable() {
+    this.display = true;
+    this.superConcept?.makeDisplayable();
   }
 }
 
@@ -121,7 +128,7 @@ function parseTxtBranch(rawLines, start, end) {
     while (i < end) {
       let j = findSubBranch(rawLines, i, end);
       let subBranch = parseTxtBranch(rawLines, i, j);
-      rootConcept.subConcepts.push(subBranch);
+      rootConcept.addSubConcept(subBranch);
       i = j;
     }
     return rootConcept;
@@ -132,6 +139,8 @@ function parseTxtTree(rawTree) {
   const rawLines = rawTree.split("\n").filter((line) => line.trim() !== "");
   return parseTxtBranch(rawLines, 0, rawLines.length);
 }
+
+function dropShallowBranches(tree, minDepth) {}
 
 //-----------------------------------------------INDEXATION (UN PEU) SEMANTIQUE
 const concepts = parseTxtTree(arbre).asList();
@@ -187,15 +196,22 @@ function toVisDataset() {
   nodes = [];
   edges = [];
 
+  concepts.forEach((concept) => {
+    if (concept.level == FINAL_LEVEL) {
+      concept.makeDisplayable();
+    }
+  });
+
   // génération des noeuds
   concepts.forEach((concept) => {
-    nodes.push(toVisDatasetNodeElement(concept));
+    if (concept.display) nodes.push(toVisDatasetNodeElement(concept));
   });
 
   // génération des arêtes
   concepts.forEach((concept) => {
     concept.subConcepts.forEach((subConcept) => {
-      edges.push(toVisDatasetEdgeElement(concept, subConcept));
+      if (subConcept.display)
+        edges.push(toVisDatasetEdgeElement(concept, subConcept));
     });
   });
 
