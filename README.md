@@ -15,6 +15,5 @@ Il reprend la base d'un projet antérieur, réalisé en L3 dans le cadre du modu
 - [graphes.html](./graphes.html) : le fichier html affichant l'ontologie
 - Dossier des [scripts](./script/) : les différents fichers JS utilisés
     - [arbre.js](./script/arbre.js) : contient l'arbre dans une variable
-    - [indexation.js](./script/indexation.js) :
-    - [main.js](./script/main.js) :
-    - 
+    - [indexation.js](./script/indexation.js) : transforme l'arbre en objet utilisable pour la librairie
+    - [main.js](./script/main.js) : fichier principal, récupère l'arbre et l'affiche
