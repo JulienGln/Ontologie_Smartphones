@@ -47,7 +47,7 @@ ontology
     web
     client lourd`;
 
-FINAL_LEVEL = 13;
+const FINAL_LEVEL = 13;
 var concepts_id = 0;
 //--------------------------------------------------------------CONCEPT CLASS
 class Concept {
