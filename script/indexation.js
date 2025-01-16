@@ -3,47 +3,49 @@
 // const fs = require("fs");
 //------------------------------------------------------------MODELISATION
 // Pseudo ontologie : c'est plutôt un recueil de concepts vaguement rangés
-const raw = ` production
-		orm
-		logiciel
-		programme
-		source
-		framework
-		langage
-			java
-			c++
-			javascript
-			php
-			c#
-			python
-			cobol
-	modélisation
-		use-case
-		agilité
-		architecture
-	environnement
-		compilation
-		ide
-		bug
-		debugger
-		test
-		os
-		système d'exploitation
-	paradigme
-		fonctionnel
-		déclaratif
-		impératif
-			séquence
-			instruction
-		objet
-			classe
-			instance
-			interface
-	interface
-		embarqué
-		mobile
-		web
-		client lourd`;
+const raw = `
+ontology
+  production
+    orm
+    logiciel
+    programme
+    source
+    framework
+    langage
+      java
+      c++
+      javascript
+      php
+      c#
+      python
+      cobol
+  modélisation
+    use-case
+    agilité
+    architecture
+  environnement
+    compilation
+    ide
+    bug
+    debugger
+    test
+    os
+    système d'exploitation
+  paradigme
+    fonctionnel
+    déclaratif
+    impératif
+      séquence
+      instruction
+    objet
+      classe
+      instance
+      interface
+  interface
+    embarqué
+    mobile
+    web
+    client lourd`;
 
 var concepts_id = 0;
 //--------------------------------------------------------------CONCEPT CLASS
@@ -68,80 +70,72 @@ class Concept {
     this.subConcepts.forEach((sub) => (t = t.concat(sub.asList())));
     return t;
   }
+
+  addSuperConcept(superConcept) {
+    this.superConcept = superConcept;
+    superConcept.subConcepts.push(this);
+  }
+
+  addSubConcept(subConcept) {
+    this.subConcepts.push(subConcept);
+    subConcept.superConcept = this;
+  }
 }
 
-//------------------------------------------------------------PARSING
-const ontology = new Concept("Smartphone", null, [], 0);
+function countLeadingTabs(line) {
+  let count = 0;
+  let i = 0;
 
-// Parsing pénible de la pseudo-ontologie (string)
-const stack = [ontology];
-const list = arbre.split("\n");
-list.forEach((element) => {
-  let last = stack.at(-1);
-  let level = element.length - element.trim().length;
-  if (last.level < level) {
-    let concept = new Concept(element.trim(), last, [], level);
-    last.subConcepts.push(concept);
-    stack.push(concept);
-  } else if (last.level == level) {
-    stack.splice(stack.length - 1, 1);
-    last = stack.at(-1);
-    let concept = new Concept(element.trim(), last, [], level);
-    last.subConcepts.push(concept);
-    stack.push(concept);
-  } else {
-    // last.level > level
-    for (let i = 0; i < last.level - level; i++)
-      stack.splice(stack.length - 1, 1);
-    last = stack.at(-1);
-    let concept = new Concept(element.trim(), last, [], level);
-    last.subConcepts.push(concept);
-    stack.push(concept);
+  while (i < line.length) {
+    if (line[i] === "\t") {
+      count++;
+      i++;
+    } else if (line[i] === " " && line[i + 1] === " ") {
+      count++;
+      i += 2;
+    } else {
+      break;
+    }
   }
-});
+
+  return count;
+}
+
+function findSubBranch(rawLines, start, end) {
+  let level = countLeadingTabs(rawLines[start]);
+  for (let i = start + 1; i < end; i++) {
+    if (countLeadingTabs(rawLines[i]) == level) return i;
+  }
+  return end;
+}
+
+function parseTxtBranch(rawLines, start, end) {
+  root = rawLines[start];
+  baseLevel = countLeadingTabs(root);
+  root = root.trim();
+  const rootConcept = new Concept(root, null, [], baseLevel);
+
+  if (end - start == 1) return rootConcept;
+  else {
+    let i = start + 1;
+    while (i < end) {
+      let j = findSubBranch(rawLines, i, end);
+      let subBranch = parseTxtBranch(rawLines, i, j);
+      rootConcept.subConcepts.push(subBranch);
+      i = j;
+    }
+    return rootConcept;
+  }
+}
+
+function parseTxtTree(rawTree) {
+  const rawLines = rawTree.split("\n").filter((line) => line.trim() !== "");
+  return parseTxtBranch(rawLines, 0, rawLines.length);
+}
 
 //-----------------------------------------------INDEXATION (UN PEU) SEMANTIQUE
-const concepts = ontology.asList();
+const concepts = parseTxtTree(arbre).asList();
 console.log(concepts);
-
-// const matrix = {};
-// const files = fs.readdirSync("./rome_txt/txt");
-
-// files.forEach((file) => {
-//   let content = fs.readFileSync("./rome_txt/txt/" + file, "utf8").toLowerCase();
-//   // Remplacement des caractères de séparation par des espaces
-//   content = content.replace(/[\n\t,.!-]/g, " ");
-//   let vector = {};
-//   matrix[file] = vector;
-//   concepts.forEach((concept) => {
-//     // Recherche des occurrences exactes en expressions individuelles
-//     // (encadrées par des espaces)
-//     if (content.indexOf(" " + concept.name + " ") != -1)
-//       vector[concept.name] = 1;
-//     else vector[concept.name] = 0;
-//   });
-// });
-
-// //------------------------------------------------------------RESULTAT
-// // Nombre de concepts trouvés par document, sans gestion de hiérarchie
-// Object.keys(matrix).forEach((file) => {
-//   let vector = matrix[file];
-//   let sum = 0;
-//   Object.values(vector).forEach((v) => (sum += v));
-//   console.log(file, sum);
-// });
-
-// //---------------------------------------------TEMPS DE RECHERCHE
-// const before = Date.now();
-
-// const docs = [];
-// Object.keys(matrix).forEach((file) => {
-//   if (matrix[file]["python"] == 1) docs.push(file);
-// });
-
-// const after = Date.now();
-// console.log(after - before);
-// console.log(docs.length);
 
 const colors = [
   "#FF5733", // Rouge orangé
