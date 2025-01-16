@@ -12,15 +12,21 @@ Smartphones
 										poussoir
 											_Maléabilité_
 												pliable
+													iPhone -14.2 Pro Fold
 												compact
+													iPhone -14 Pro
 										capteur
 											_Maléabilité_
 												pliable
+													iPhone -15.2 Pro Fold
 												compact
+													iPhone -15 Pro
 										aucun
 											_Maléabilité_
 												pliable
+													iPhone -16 Pro Fold
 												compact
+													iPhone 16 Pro
 								60Hz
 									Bouton central
 										poussoir
@@ -146,7 +152,9 @@ Smartphones
 										poussoir
 											_Maléabilité_
 												pliable
+													iPhone -14.2 Fold
 												compact
+													iPhone -14
 										capteur
 											_Maléabilité_
 												pliable
@@ -257,6 +265,7 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													iPhone X
 								modulable
 									Bouton central
 										poussoir
@@ -383,14 +392,17 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													iPhone 4
 										capteur
 											_Maléabilité_
 												pliable
 												compact
+													iPhone 7
 										aucun
 											_Maléabilité_
 												pliable
 												compact
+													iPhone 8
 								modulable
 									Bouton central
 										poussoir
@@ -424,7 +436,10 @@ Smartphones
 										aucun
 											_Maléabilité_
 												pliable
+													Google Pixel 9 Pro Fold
 												compact
+													Google Pixel 8 Pro
+													Google Pixel 9 Pro
 								60Hz
 									Bouton central
 										poussoir
@@ -468,7 +483,9 @@ Smartphones
 										aucun
 											_Maléabilité_
 												pliable
+													Samsung Galaxy Z Fold 5
 												compact
+													Samsung Galaxy S23 Ultra
 								60Hz
 									Bouton central
 										poussoir
@@ -497,6 +514,7 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Samsung Galaxy S23
 						ips
 							Rafraichissement
 								120Hz
@@ -559,6 +577,8 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Google Pixel 8
+													Google Pixel 9
 								60Hz
 									Bouton central
 										poussoir
@@ -602,6 +622,7 @@ Smartphones
 										aucun
 											_Maléabilité_
 												pliable
+													Samsung Galaxy Z Flip 5
 												compact
 								60Hz
 									Bouton central
@@ -617,6 +638,7 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Samsung Galaxy S10
 								modulable
 									Bouton central
 										poussoir
@@ -707,6 +729,7 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Samsung Galaxy S9
 								modulable
 									Bouton central
 										poussoir
@@ -828,6 +851,7 @@ Smartphones
 										aucun
 											_Maléabilité_
 												pliable
+													Microsoft Windows Teams 5 Fold
 												compact
 								60Hz
 									Bouton central
@@ -839,6 +863,7 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Microsoft Geolocalisator Teams 2
 										aucun
 											_Maléabilité_
 												pliable
@@ -973,6 +998,7 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Microsoft Geolocalisator Teams
 										aucun
 											_Maléabilité_
 												pliable
@@ -1191,6 +1217,8 @@ Smartphones
 											_Maléabilité_
 												pliable
 												compact
+													Lumia 950 XL
+													Nokia Lumia 1020
 										capteur
 											_Maléabilité_
 												pliable
