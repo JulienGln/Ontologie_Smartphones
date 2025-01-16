@@ -1,12 +1,3 @@
-/**
- * Commandes
- * Ctrl + Clic gauche = Séléction multiple
- * Clic gauche = Séléction unique
- * Shift + Clic gauche (dans le vide) = créer
- * Shift + Clic gauche (sur un lien) = éditer le lien
- * 'Suppr'/Del quand un ou plusieurs node/edge sélectionnés = Suppression du noeud/lien
- */
-
 /**************************/
 /** VARIABLES GLOBALES  **/
 /************************/
@@ -26,13 +17,6 @@ var nbComposantesConnexes;
 window.addEventListener("load", async function () {
   // masque l'écran de chargement
   document.getElementById("loading-screen").style.display = "none";
-
-  // créer un tableau avec des nœuds
-  // un noeud peut avoir ses propres options (différentes du groupe)
-  nodes = loadNodes();
-
-  // créer un tableau avec des arêtes
-  edges = loadEdges();
 
   // créer un réseau
   container = document.getElementById("mynetwork");
@@ -87,85 +71,6 @@ window.addEventListener("load", async function () {
   var selectedNodes = [];
   var selectedEdges = [];
 
-  // suppression d'un noeud avec la touche "suppr"
-  document.addEventListener("keydown", function (event) {
-    const key = event.key; // const {key} = event; ES6+
-    if (key === "Delete") {
-      let lstEdgesToDelete = [];
-      if (selectedNodes.length === 0) {
-        lstEdgesToDelete = Array(...selectedEdges);
-      }
-
-      selectedNodes.forEach((node, node_idx) => {
-        edges.forEach((edge, edge_idx) => {
-          if (edge.to === node || edge.from === node) {
-            lstEdgesToDelete.push(edge_idx);
-          }
-        });
-      });
-
-      nodes.remove(selectedNodes);
-      edges.remove(lstEdgesToDelete);
-    }
-  });
-
-  document.getElementById("btnLinkNodes").addEventListener("click", (event) => {
-    console.log(selectedNodes);
-    for (let i = 0; i < selectedNodes.length; i++) {
-      for (let x = i + 1; x < selectedNodes.length; x++) {
-        edges.add([
-          {
-            from: selectedNodes[i],
-            to: selectedNodes[x],
-            dashes: true,
-            arrows: "to",
-            color: "black",
-          },
-        ]);
-      }
-    }
-    selectedNodes = [];
-  });
-
-  // réaction du bouton rechercher chemin
-  document.getElementById("btnSearchWay").addEventListener("click", (event) => {
-    // selectedNodes ne contient forcément que deux noeuds ! (sinon, bouton désactivé)
-    if (selectedNodes.length === 2) {
-      var idNoeud1 = selectedNodes[0];
-      var idNoeud2 = selectedNodes[1];
-      var tab = [];
-      tab = findCheminBFS(idNoeud1, idNoeud2);
-      var chemin = "";
-      for (let i = 0; i < tab.length; i++) {
-        chemin +=
-          "\nNoeud " +
-          i +
-          " : " +
-          tab[i].label +
-          " (ID du noeud : " +
-          tab[i].id +
-          ", " +
-          "type : " +
-          tab[i].type +
-          ")";
-        //JSON.stringify(tab[i]);
-        // recherche de "l'ancêtre commun" des deux noeuds (si possible => longueur chemin impaire)
-        if (tab.length % 2 == 1 && i == Math.floor(tab.length / 2)) {
-          chemin += " [POINT COMMUN]";
-        }
-      }
-      // JSON.stringify(tab)
-      alert(
-        "Chemin entre " +
-          nodes.get(idNoeud1).label +
-          " et " +
-          nodes.get(idNoeud2).label +
-          " : " +
-          (tab.length === 0 ? "aucun chemin" : chemin)
-      );
-    }
-  });
-
   // réaction du bouton d'info
   document
     .getElementById("btnCommandsModal")
@@ -195,14 +100,12 @@ window.addEventListener("load", async function () {
     /*nodes.forEach((node) => {
       console.log("node " + node.id + " : " + JSON.stringify(node));
     });*/
-    //printFormulaire();
 
     // si on a cliqué sur un noeud
     var nodeId = null;
     if (params.nodes.length > 0) {
       nodeId = params.nodes;
       console.log("ID du noeud sélectionné : " + nodeId);
-      //alert("edges : " + JSON.stringify(edges.get(params.edges[0])));
       console.log(
         "Attributs du noeud " +
           nodes.get(nodeId)[0].label +
