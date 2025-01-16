@@ -1,6 +1,6 @@
 const arbre = ` _Système d'exploitation_
 		iOS
-			Camera 
+			Camera
 				triple
 					Ecran
 						oled
@@ -404,7 +404,7 @@ const arbre = ` _Système d'exploitation_
 												pliable
 												compact
 		android
-			Camera 
+			Camera
 				triple
 					Ecran
 						oled
@@ -808,7 +808,7 @@ const arbre = ` _Système d'exploitation_
 												pliable
 												compact
 		windows phone
-			Camera 
+			Camera
 				triple
 					Ecran
 						oled
