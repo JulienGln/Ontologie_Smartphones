@@ -1,2 +1,4 @@
 # Ontologie_Smartphones
- Projet d'INFO 907 - Ingénierie des connaissances
+Théo MATROD - Gor GRIGORYAN - Julien GALERNE
+
+Projet d'INFO 907 - Ingénierie des connaissances
